@@ -1,4 +1,11 @@
+import { IsOptional, IsBoolean, IsUUID } from 'class-validator';
+
 export class CreateOrUpdateRsvpDto {
-  attending?: boolean;
-  dishId?: string;
+  @IsOptional()
+  @IsBoolean()
+  attending: boolean;
+
+  @IsOptional()
+  @IsUUID()
+  dishId: string;
 }

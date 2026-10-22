@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Potluck } from '../models/potluck.entity';
-import { CreatePotluckDto } from './potluck.dto';
+import { CreatePotluckDto, UpdatePotluckDto, PaginationDto } from './potluck.dto';
 
 @Injectable()
 export class PotluckService {
@@ -15,15 +15,23 @@ export class PotluckService {
     return this.potluckRepository.save(createPotluckDto);
   }
 
-  findAll() {
-    return this.potluckRepository.find();
+  findAll(pagination: PaginationDto) {
+    return this.potluckRepository.findAndCount({
+      skip: (pagination.page - 1) * pagination.limit,
+      take: pagination.limit,
+      order: pagination.sortBy
+        ? {
+            date: 'ASC',
+          }
+        : undefined,
+    });
   }
 
   findOne(id: string) {
     return this.potluckRepository.findOne({ where: { id } });
   }
 
-  update(id: string, updatePotluckDto: Partial<CreatePotluckDto>) {
+  update(id: string, updatePotluckDto: UpdatePotluckDto) {
     return this.potluckRepository.save(
       { id, ...updatePotluckDto },
     );

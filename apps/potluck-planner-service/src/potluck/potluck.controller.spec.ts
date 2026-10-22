@@ -1,69 +1,137 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ConfigModule } from '@nestjs/config';
-import { INestApplication } from '@nestjs/common';
-import { PotluckModule } from '../potluck/potluck.module';
-import * as request from 'supertest';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PotluckController } from './potluck.controller';
+import { PotluckService } from './potluck.service';
+import { Potluck } from '../models/potluck.entity';
+import { CreatePotluckDto, UpdatePotluckDto, PaginationDto } from './potluck.dto';
+import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 
-describe('Potluck Controller', () => {
-  let appRef: INestApplication;
+describe('PotluckController', () => {
+  let controller: PotluckController;
+
+  const mockPotluckData: Potluck[] = [
+    {
+      id: '1',
+      name: 'Potluck 1',
+      description: 'Description 1',
+      organiserId: 'user1',
+      date: new Date('2024-01-01'),
+      organiser: null,
+    },
+    {
+      id: '2',
+      name: 'Potluck 2',
+      description: 'Description 2',
+      organiserId: 'user2',
+      date: new Date('2024-01-02'),
+      organiser: null,
+    },
+  ];
+
+  const mockPagination: PaginationDto = {
+    page: 1,
+    limit: 2,
+    sortBy: false,
+  };
+
+  const mockUpdate: UpdatePotluckDto = {
+    name: 'Updated Name',
+  };
+
+  const mockCreate: CreatePotluckDto = {
+    name: 'New Potluck',
+    description: 'New Description',
+    organiserId: 'user1',
+    date: new Date('2024-02-01'),
+  };
+
+  const mockPotluckService = {
+    create: vi.fn(),
+    findAll: vi.fn(),
+    findOne: vi.fn(),
+    update: vi.fn(),
+    remove: vi.fn(),
+  };
 
   beforeEach(async () => {
-    const moduleFixture: TestingModule = await Test.createTestingModule({
-      imports: [ConfigModule.forRoot({ isGlobal: true }), PotluckModule],
+    mockPotluckService.findAll.mockResolvedValue([mockPotluckData]);
+    mockPotluckService.findOne.mockResolvedValue(mockPotluckData[0]);
+    mockPotluckService.create.mockResolvedValue(mockPotluckData[0]);
+    mockPotluckService.update.mockResolvedValue(mockPotluckData[0]);
+    mockPotluckService.remove.mockResolvedValue(undefined);
+
+    const module: TestingModule = await Test.createTestingModule({
+      imports: [ConfigModule.forRoot({ isGlobal: true })],
+      controllers: [PotluckController],
+      providers: [
+        {
+          provide: PotluckService,
+          useValue: mockPotluckService,
+        },
+        {
+          provide: ConfigService,
+          useValue: {
+            get: vi.fn(),
+          },
+        },
+      ],
     }).compile();
 
-    appRef = moduleFixture.createNestApplication();
-    await appRef.init();
+    controller = module.get<PotluckController>(PotluckController);
   });
 
-  it('should be defined', () => {
-    expect(appRef).toBeDefined();
+  afterEach(() => {
+    vi.clearAllMocks();
   });
 
-  describe('GET /', () => {
-    it('should return a list of potlucks', async () => {
-      const res = await request(appRef.getHttpServer())
-        .get('/')
-        .expect('Content-Type', /json/);
-      expect(res.body).toEqual([]);
+  describe('create', () => {
+    it('should create a potluck', async () => {
+      const result = await controller.create(mockCreate);
+      expect(result).toEqual(mockPotluckData[0]);
+      expect(mockPotluckService.create).toHaveBeenCalledWith(mockCreate);
     });
   });
 
-  describe('GET /:id', () => {
-    it('should return a single potluck by id', async () => {
-      const res = await request(appRef.getHttpServer())
-        .get('/123')
-        .expect('Content-Type', /json/);
-      expect(res.body).toEqual({ id: '123' });
+  describe('findAll', () => {
+    it('should return all potlucks with pagination', async () => {
+      const result = await controller.findAll(mockPagination);
+      expect(result[0]).toEqual(mockPotluckData);
+      expect(mockPotluckService.findAll).toHaveBeenCalledWith(mockPagination);
+    });
+
+    it('should handle empty pagination', async () => {
+      const result = await controller.findAll({ page: 1, limit: 10, sortBy: false });
+      expect(result[0]).toEqual(mockPotluckData);
     });
   });
 
-  describe('POST /', () => {
-    it('should create a new potluck', async () => {
-      const res = await request(appRef.getHttpServer())
-        .post('/')
-        .send({ name: 'Test Potluck' })
-        .expect('Content-Type', /json/);
-      expect(res.body.name).toBe('Test Potluck');
+  describe('findOne', () => {
+    it('should return a single potluck', async () => {
+      const result = await controller.findOne('1');
+      expect(result).toEqual({
+        id: '1',
+        name: 'Potluck 1',
+        description: 'Description 1',
+        organiserId: 'user1',
+        date: expect.any(Date),
+        organiser: null,
+      });
+      expect(mockPotluckService.findOne).toHaveBeenCalledWith('1');
     });
   });
 
-  describe('PATCH /:id', () => {
+  describe('update', () => {
     it('should update a potluck', async () => {
-      const res = await request(appRef.getHttpServer())
-        .patch('/123')
-        .send({ name: 'Updated Potluck' })
-        .expect('Content-Type', /json/);
-      expect(res.body.name).toBe('Updated Potluck');
+      const result = await controller.update('1', mockUpdate);
+      expect(result).toEqual(mockPotluckData[0]);
+      expect(mockPotluckService.update).toHaveBeenCalledWith('1', mockUpdate);
     });
   });
 
-  describe('DELETE /:id', () => {
-    it('should delete a potluck', async () => {
-      const res = await request(appRef.getHttpServer())
-        .delete('/123')
-        .expect('Content-Type', /json/);
-      expect(res.body).toEqual({ id: '123' });
+  describe('remove', () => {
+    it('should remove a potluck', async () => {
+      await controller.remove('1');
+      expect(mockPotluckService.remove).toHaveBeenCalledWith('1');
     });
   });
 });

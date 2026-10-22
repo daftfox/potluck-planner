@@ -2,13 +2,10 @@ import { Module } from '@nestjs/common';
 import { RsvpController } from './rsvp.controller';
 import { RsvpService } from './rsvp.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { RSVP } from '../models/rsvp.entity'
-import { Potluck } from '../models/potluck.entity'
-import { User } from '../models/user.entity'
-import { Dish } from '../models/dish.entity'
+import { RSVP } from '../models/rsvp.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([RSVP, Potluck, User, Dish])],
+  imports: [TypeOrmModule.forFeature([RSVP])],
   controllers: [RsvpController],
   providers: [RsvpService],
   exports: [RsvpService],

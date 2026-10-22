@@ -4,20 +4,22 @@ import { AppService } from './app.service';
 import { PotluckModule } from '../potluck/potluck.module';
 import { RsvpModule } from '../rsvp/rsvp.module';
 import { DishModule } from '../dish/dish.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from '../models/user.entity';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+
+const dataSourceOptions: TypeOrmModuleOptions = {
+  type: 'postgres',
+  host: process.env.DATABASE_HOST || 'localhost',
+  port: parseInt(process.env.DATABASE_PORT || '5432', 10),
+  username: process.env.DATABASE_USER || 'potluck',
+  password: process.env.DATABASE_PASSWORD || 'potluck',
+  database: process.env.DATABASE_NAME || 'potluck',
+  autoLoadEntities: true,
+  synchronize: true,
+};
 
 @Module({
   imports: [PotluckModule, RsvpModule, DishModule,
-    TypeOrmModule.forRoot({
-      type: 'postgres', // the type of your database
-      host: 'localhost',
-      port: 5432,
-      username: 'potluck',
-      password: 'potluck',
-      database: 'potluck',
-      autoLoadEntities: true,
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
   ],
   controllers: [AppController],
   providers: [AppService],

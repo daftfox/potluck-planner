@@ -6,9 +6,10 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { PotluckService } from './potluck.service';
-import { CreatePotluckDto } from './potluck.dto';
+import { CreatePotluckDto, UpdatePotluckDto, PaginationDto } from './potluck.dto';
 
 @Controller('potlucks')
 export class PotluckController {
@@ -20,8 +21,8 @@ export class PotluckController {
   }
 
   @Get()
-  findAll() {
-    return this.potluckService.findAll();
+  findAll(@Query() pagination: PaginationDto) {
+    return this.potluckService.findAll(pagination);
   }
 
   @Get(':id')
@@ -30,7 +31,7 @@ export class PotluckController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePotluckDto: Partial<CreatePotluckDto>) {
+  update(@Param('id') id: string, @Body() updatePotluckDto: UpdatePotluckDto) {
     return this.potluckService.update(id, updatePotluckDto);
   }
 

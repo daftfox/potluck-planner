@@ -34,14 +34,14 @@ export class DishService {
 
   // Bulk operations per potluck
   addDishesToPotluck(potluckId: string, dishIds: string[]) {
-    for (const d of dishIds) {
-      this.dishRepository.save({ id: d, potluckId });
-    }
+    return this.dishRepository.save(
+      dishIds.map(d => ({ id: d, potluckId })),
+    );
   }
 
   removeDishesFromPotluck(potluckId: string, dishIds: string[]) {
-    for (const d of dishIds) {
-      this.dishRepository.save({ id: d, potluckId: null });
-    }
+    return this.dishRepository.save(
+      dishIds.map(d => ({ id: d, potluckId: null })),
+    );
   }
 }
