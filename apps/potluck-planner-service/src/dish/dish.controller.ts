@@ -6,16 +6,20 @@ import {
   Patch,
   Param,
   Delete,
+  ValidationPipe,
 } from '@nestjs/common';
 import { DishService } from './dish.service';
 import { CreateDishDto } from './dish.dto';
 
 @Controller('dishes')
 export class DishController {
-  constructor(private readonly dishService: DishService) {}
+  constructor(
+    private readonly dishService: DishService,
+    private readonly validationPipe: ValidationPipe,
+  ) {}
 
   @Post()
-  create(@Body() createDishDto: CreateDishDto) {
+  create(@Body(this.validationPipe) createDishDto: CreateDishDto) {
     return this.dishService.create(createDishDto);
   }
 
@@ -30,7 +34,7 @@ export class DishController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateDishDto: Partial<CreateDishDto>) {
+  update(@Param('id') id: string, @Body(this.validationPipe) updateDishDto: CreateDishDto) {
     return this.dishService.update(id, updateDishDto);
   }
 
