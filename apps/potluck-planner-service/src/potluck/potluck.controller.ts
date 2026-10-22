@@ -7,16 +7,20 @@ import {
   Param,
   Delete,
   Query,
+  ValidationPipe,
 } from '@nestjs/common';
 import { PotluckService } from './potluck.service';
 import { CreatePotluckDto, UpdatePotluckDto, PaginationDto } from './potluck.dto';
 
 @Controller('potlucks')
 export class PotluckController {
-  constructor(private readonly potluckService: PotluckService) {}
+  constructor(
+    private readonly potluckService: PotluckService,
+    private readonly validationPipe: ValidationPipe,
+  ) {}
 
   @Post()
-  create(@Body() createPotluckDto: CreatePotluckDto) {
+  create(@Body(this.validationPipe) createPotluckDto: CreatePotluckDto) {
     return this.potluckService.create(createPotluckDto);
   }
 
