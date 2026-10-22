@@ -20,7 +20,7 @@ export class PotluckController {
   ) {}
 
   @Post()
-  create(@Body(this.validationPipe) createPotluckDto: CreatePotluckDto) {
+  create(@Body(this.validationPipe!) createPotluckDto: CreatePotluckDto) {
     return this.potluckService.create(createPotluckDto);
   }
 
