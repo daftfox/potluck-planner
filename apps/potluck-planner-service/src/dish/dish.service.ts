@@ -33,15 +33,50 @@ export class DishService {
   }
 
   // Bulk operations per potluck
-  addDishesToPotluck(potluckId: string, dishIds: string[]) {
-    return this.dishRepository.save(
-      dishIds.map(d => ({ id: d, potluckId })),
-    );
+  async addDishesToPotluck(potluckId: string, dishIds: string[]) {
+    const queryRunner = this.dishRepository.manager.connection.createQueryRunner();
+    try {
+      await queryRunner.connect();
+      await queryRunner.startTransaction();
+
+      await queryRunner.manager.query(
+        `INSERT INTO "dishes" ("id", "name", "description", "recipeNotes", "suitableFor", "potluckId")
+         VALUES ($1, $2, $3, $4, $5, $6)
+         WHERE $6 NOT IN (SELECT "potluckId" FROM "dishes")
+         RETURNING "id"`,
+        [...dishIds, '', '', '', '', potluckId],  // id, name, description, recipeNotes, suitableFor, potluckId
+      );
+
+      await queryRunner.commitTransaction();
+      return { inserted: dishIds.length };
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+      throw err;
+    } finally {
+      await queryRunner.release();
+    }
   }
 
-  removeDishesFromPotluck(potluckId: string, dishIds: string[]) {
-    return this.dishRepository.save(
-      dishIds.map(d => ({ id: d, potluckId: null })),
-    );
+  // Bulk remove dishes from potluck
+  async removeDishesFromPotluck(potluckId: string, dishIds: string[]) {
+    const queryRunner = this.dishRepository.manager.connection.createQueryRunner();
+    try {
+      await queryRunner.connect();
+      await queryRunner.startTransaction();
+
+      await queryRunner.manager.query(
+        `UPDATE "dishes" SET "potluckId" = NULL
+         WHERE "id" = ANY($1::uuid[]) AND "potluckId" = $2`,
+        [dishIds, potluckId],
+      );
+
+      await queryRunner.commitTransaction();
+      return { removed: dishIds.length };
+    } catch (err) {
+      await queryRunner.rollbackTransaction();
+      throw err;
+    } finally {
+      await queryRunner.release();
+    }
   }
 }
