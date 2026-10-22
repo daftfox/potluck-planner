@@ -14,7 +14,7 @@ const dataSourceOptions: TypeOrmModuleOptions = {
   password: process.env.DATABASE_PASSWORD || 'potluck',
   database: process.env.DATABASE_NAME || 'potluck',
   autoLoadEntities: true,
-  synchronize: true,
+  synchronize: false,
 };
 
 @Module({
