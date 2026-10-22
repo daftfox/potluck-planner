@@ -10,7 +10,7 @@ export class RsvpController {
   ) {}
 
   @Post()
-  createOrUpdate(@Body(this.validationPipe) dto: CreateOrUpdateRsvpDto) {
+  createOrUpdate(@Body(this.validationPipe!) dto: CreateOrUpdateRsvpDto) {
     return this.rsvpService.createOrUpdate(dto);
   }
 
@@ -18,7 +18,7 @@ export class RsvpController {
   update(
     @Param('potluckId') potluckId: string,
     @Param('userId') userId: string,
-    @Body(this.validationPipe) dto: Partial<CreateOrUpdateRsvpDto>,
+    @Body(this.validationPipe!) dto: Partial<CreateOrUpdateRsvpDto>,
   ) {
     return this.rsvpService.update(potluckId, userId, dto);
   }
