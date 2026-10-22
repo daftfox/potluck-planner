@@ -19,7 +19,7 @@ export class DishController {
   ) {}
 
   @Post()
-  create(@Body(this.validationPipe) createDishDto: CreateDishDto) {
+  create(@Body(this.validationPipe!) createDishDto: CreateDishDto) {
     return this.dishService.create(createDishDto);
   }
 
@@ -34,7 +34,7 @@ export class DishController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body(this.validationPipe) updateDishDto: CreateDishDto) {
+  update(@Param('id') id: string, @Body(this.validationPipe!) updateDishDto: CreateDishDto) {
     return this.dishService.update(id, updateDishDto);
   }
 
