@@ -1,16 +1,19 @@
-import { IsOptional, IsString, IsBoolean, IsDate, IsUUID, Max, Min, IsNotEmpty, IsNumber } from 'class-validator';
+import { IsOptional, IsString, IsBoolean, IsDate, IsUUID, Max, Min, IsNotEmpty, IsNumber, MinLength } from 'class-validator';
 
 export class CreatePotluckDto {
   @IsString()
   @IsNotEmpty()
+  @MinLength(3)
   name: string;
 
   @IsString()
   @IsNotEmpty()
+  @MinLength(3)
   description: string;
 
   @IsString()
   @IsNotEmpty()
+  @MinLength(3)
   organiserId: string;
 
   @IsDate()
