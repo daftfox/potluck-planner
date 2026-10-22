@@ -2,6 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { RSVP } from '../models/rsvp.entity';
+import { CreateOrUpdateRsvpDto } from './rsvp.dto';
 
 @Injectable()
 export class RsvpService {
