@@ -1,0 +1,110 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  height: 2.5rem;
+  padding: 1rem 2rem;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-pill);
+  background-color: transparent;
+  color: alpha(from var(--color-text) / 70%);
+  cursor: pointer;
+  font: var(--font-weight-medium) var(--font-size-sm) / var(--line-height-sm) var(--font-family-base);
+  text-decoration: none;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.button.round {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  border-color: var(--color-border);
+}
+
+.button:hover {
+  color: var(--color-foreground);
+  background-color: var(--color-secondary);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.button.primary {
+  background-color: var(--color-primary);
+  color: var(--color-background);
+  border-color: transparent;
+}
+
+.button.primary:hover {
+  background-color: var(--color-primary-strong);
+}
+
+.button.primary > i {
+  color: inherit;
+  font-size: var(--font-size-md);
+}
+
+.button.secondary {
+  background-color: transparent;
+  border-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.button.secondary:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-text-on-light);
+}
+
+.button.success {
+  background-color: var(--color-success);
+  color: var(--color-background);
+  border-color: transparent;
+}
+
+.button.success:hover {
+  background-color: color-mix(in srgb, var(--color-success) 80%, black);
+}
+
+.button.warning {
+  background-color: var(--color-warning);
+  color: var(--color-text-on-light);
+  border-color: transparent;
+}
+
+.button.warning:hover {
+  background-color: color-mix(in srgb, var(--color-warning) 80%, black);
+}
+
+.button.danger {
+  background-color: var(--color-error);
+  color: var(--color-background);
+  border-color: transparent;
+}
+
+.button.danger:hover {
+  background-color: color-mix(in srgb, var(--color-error) 80%, black);
+}
+
+.button.sm {
+  min-height: 2rem;
+  padding: var(--spacing-2) var(--spacing-4);
+}
+
+.button > i {
+  color: inherit;
+  font-size: var(--font-size-md);
+}

@@ -5,6 +5,35 @@
   "projectType": "application",
   "tags": [],
   "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "main": "apps/potluck-planner-service/src/main.ts",
+        "tsConfig": "apps/potluck-planner-service/tsconfig.app.json",
+        "outputPath": "dist/apps/potluck-planner-service",
+        "webpackConfig": "apps/potluck-planner-service/webpack.config.js"
+      },
+      "configurations": {
+        "development": {
+          "mode": "development"
+        },
+        "production": {
+          "mode": "production"
+        }
+      }
+    },
+    "database-up": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "options": {
+        "command": "docker compose up -d",
+        "cwd": "apps/potluck-planner-service"
+      }
+    },
     "prune-lockfile": {
       "dependsOn": ["build"],
       "cache": true,
@@ -32,11 +61,24 @@
       "dependsOn": ["prune-lockfile", "copy-workspace-modules"],
       "executor": "nx:noop"
     },
+    "docker-build": {
+      "executor": "nx:run-commands",
+      "cache": false,
+      "dependsOn": [
+        "build",
+        { "projects": ["potluck-planner-ui"], "target": "build" }
+      ],
+      "options": {
+        "image": "potluck-planner:latest",
+        "caFile": "/etc/pki/tls/certs/ca-bundle.crt",
+        "command": "docker build -f apps/potluck-planner-service/Dockerfile --secret id=npm_ca,src={args.caFile} -t {args.image} dist/apps"
+      }
+    },
     "serve": {
       "continuous": true,
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": ["build"],
+      "dependsOn": ["build", "database-up"],
       "options": {
         "buildTarget": "potluck-planner-service:build",
         "runBuildTargetDependencies": false

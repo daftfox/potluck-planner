@@ -1,0 +1,43 @@
+# Example deployment of the combined UI + API image.
+# Build the image first: npx nx docker-build potluck-planner-service
+# Then provide secrets via a .env file next to this compose file (or your shell) and run:
+#   docker compose -f docker-compose.example.yml up -d
+services:
+  potluck-planner:
+    image: ${POTLUCK_IMAGE:-potluck-planner:latest}
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PLANNER_SERVER_PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:-potluck}
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+      DB_NAME: ${DB_NAME:-potluck}
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required (min 32 characters)}
+      JWT_ISSUER: ${JWT_ISSUER:-potluck-planner-api}
+      JWT_AUDIENCE: ${JWT_AUDIENCE:-potluck-planner-ui}
+      # Uncomment for the first start only; seeds the initial admin account (min 8 characters).
+      # INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD}
+    ports:
+      - "${POTLUCK_PORT:-8080}:3000"
+
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME:-potluck}
+      POSTGRES_USER: ${DB_USER:-potluck}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    volumes:
+      - potluck_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  potluck_postgres_data:

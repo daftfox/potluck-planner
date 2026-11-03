@@ -1,0 +1,107 @@
+.transition-fast {
+  transition: all var(--transition-fast);
+}
+
+.transition-default {
+  transition: all var(--transition-default);
+}
+
+.transition-slow {
+  transition: all var(--transition-slow);
+}
+
+.border-primary {
+    transition: border-color var(--transition-fast);
+}
+
+.border-primary:hover {
+    border-color: alpha(from var(--color-primary) / 20%);
+}
+
+.shadow-primary {
+    transition: 
+        transform var(--transition-fast), 
+        box-shadow var(--transition-fast);
+}
+
+.shadow-primary:hover {
+    transform: translateY(-.125rem);
+    box-shadow: 1px 1px 7px 0px alpha(from var(--color-primary) / 30%);
+}
+.fade-in {
+  animation: fade-in var(--transition-default) both;
+}
+
+.fade-out {
+  animation: fade-out var(--transition-default) both;
+  pointer-events: none;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.reveal {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.smooth-height {
+  overflow: hidden;
+  transition: height var(--transition-slow);
+}
+
+.reveal-content {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.reveal-in {
+  animation: reveal-in var(--transition-slow) both;
+}
+
+.reveal-out {
+  animation: reveal-out var(--transition-slow) both;
+  pointer-events: none;
+}
+
+@keyframes reveal-in {
+  from {
+    grid-template-rows: 0fr;
+    opacity: 0;
+  }
+  to {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+}
+
+@keyframes reveal-out {
+  from {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+  to {
+    grid-template-rows: 0fr;
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smooth-height {
+    transition-duration: 1ms;
+  }
+
+  .fade-in,
+  .fade-out,
+  .reveal-in,
+  .reveal-out {
+    animation-duration: 1ms;
+  }
+}

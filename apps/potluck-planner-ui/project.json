@@ -14,6 +14,7 @@
         "outputPath": "dist/apps/potluck-planner-ui",
         "browser": "apps/potluck-planner-ui/src/main.ts",
         "tsConfig": "apps/potluck-planner-ui/tsconfig.app.json",
+        "inlineStyleLanguage": "css",
         "assets": [
           {
             "glob": "**/*",
@@ -49,6 +50,9 @@
       "continuous": true,
       "executor": "@angular/build:dev-server",
       "defaultConfiguration": "development",
+      "options": {
+        "proxyConfig": "apps/potluck-planner-ui/proxy.config.js"
+      },
       "configurations": {
         "production": {
           "buildTarget": "potluck-planner-ui:build:production"
@@ -61,18 +65,11 @@
     "lint": {
       "executor": "@nx/eslint:lint"
     },
-    "test": {
-      "executor": "@angular/build:unit-test",
-      "options": {
-        "watch": false
-      }
-    },
     "serve-static": {
       "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "potluck-planner-ui:build",
-        "port": 4200,
         "staticFilePath": "dist/apps/potluck-planner-ui/browser",
         "spa": true
       }

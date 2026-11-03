@@ -1,0 +1,21 @@
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object,
+picture,
+source {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}

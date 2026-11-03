@@ -1,0 +1,225 @@
+@font-face {
+  font-family: 'Material Symbols Sharp';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/material-symbols/material-symbols-sharp.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Material Symbols Filled';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/material-symbols/material-symbols-filled.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/material-symbols/material-symbols-rounded.woff2') format('woff2');
+}
+
+.material-icons,
+.material-icons-rounded,
+.material-icons-sharp,
+.material-icons-sharp-small,
+.material-icons-sharp-medium,
+.material-icons-sharp-large,
+.material-icons-rounded-small,
+.material-icons-rounded-medium,
+.material-icons-rounded-large {
+  display: inline-block;
+  color: inherit;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-family: 'Material Symbols Rounded', serif;
+}
+
+.material-icons.primary,
+.material-icons-xs.primary,
+.material-icons-sm.primary,
+.material-icons-md.primary,
+.material-icons-lg.primary,
+.material-icons-xl.primary,
+.material-icons-2xl.primary,
+.material-icons-3xl.primary,
+.material-icons-4xl.primary,
+.material-icons-rounded.primary,
+.material-icons-rounded-xs.primary,
+.material-icons-rounded-sm.primary,
+.material-icons-rounded-md.primary,
+.material-icons-rounded-lg.primary,
+.material-icons-rounded-xl.primary,
+.material-icons-rounded-2xl.primary,
+.material-icons-rounded-3xl.primary,
+.material-icons-rounded-4xl.primary,
+.material-icons-rounded-small.primary,
+.material-icons-rounded-medium.primary,
+.material-icons-rounded-large.primary,
+.material-icons-sharp.primary,
+.material-icons-sharp-xs.primary,
+.material-icons-sharp-sm.primary,
+.material-icons-sharp-md.primary,
+.material-icons-sharp-lg.primary,
+.material-icons-sharp-xl.primary,
+.material-icons-sharp-2xl.primary,
+.material-icons-sharp-3xl.primary,
+.material-icons-sharp-4xl.primary,
+.material-icons-sharp-small.primary,
+.material-icons-sharp-medium.primary,
+.material-icons-sharp-large.primary,
+.material-icons.fill.primary,
+.material-icons-xs.fill.primary,
+.material-icons-sm.fill.primary,
+.material-icons-md.fill.primary,
+.material-icons-lg.fill.primary,
+.material-icons-xl.fill.primary,
+.material-icons-2xl.fill.primary,
+.material-icons-3xl.fill.primary,
+.material-icons-4xl.fill.primary,
+.material-icons-rounded.fill.primary,
+.material-icons-rounded-xs.fill.primary,
+.material-icons-rounded-sm.fill.primary,
+.material-icons-rounded-md.fill.primary,
+.material-icons-rounded-lg.fill.primary,
+.material-icons-rounded-xl.fill.primary,
+.material-icons-rounded-2xl.fill.primary,
+.material-icons-rounded-3xl.fill.primary,
+.material-icons-rounded-4xl.fill.primary,
+.material-icons-rounded-small.fill.primary,
+.material-icons-rounded-medium.fill.primary,
+.material-icons-rounded-large.fill.primary,
+.material-icons-sharp.fill.primary,
+.material-icons-sharp-xs.fill.primary,
+.material-icons-sharp-sm.fill.primary,
+.material-icons-sharp-md.fill.primary,
+.material-icons-sharp-lg.fill.primary,
+.material-icons-sharp-xl.fill.primary,
+.material-icons-sharp-2xl.fill.primary,
+.material-icons-sharp-3xl.fill.primary,
+.material-icons-sharp-4xl.fill.primary,
+.material-icons-sharp-small.fill.primary,
+.material-icons-sharp-medium.fill.primary,
+.material-icons-sharp-large.fill.primary {
+  color: var(--color-primary);
+}
+
+.material-icons-xs,
+.material-icons-rounded-xs,
+.material-icons-sharp-xs {
+  font-size: var(--font-size-xs);
+}
+
+.material-icons-sm,
+.material-icons-rounded-sm,
+.material-icons-sharp-sm,
+.material-icons-sharp-small,
+.material-icons-rounded-small {
+  font-size: var(--font-size-sm);
+}
+
+.material-icons-md,
+.material-icons-rounded-md,
+.material-icons-sharp-md,
+.material-icons-sharp-medium,
+.material-icons-rounded-medium {
+  font-size: var(--font-size-md);
+}
+
+.material-icons-lg,
+.material-icons-rounded-lg,
+.material-icons-sharp-lg,
+.material-icons-sharp-large,
+.material-icons-rounded-large {
+  font-size: var(--font-size-lg);
+}
+
+.material-icons-xl,
+.material-icons-rounded-xl,
+.material-icons-sharp-xl {
+  font-size: var(--font-size-xl);
+}
+
+.material-icons-2xl,
+.material-icons-rounded-2xl,
+.material-icons-sharp-2xl {
+  font-size: var(--font-size-2xl);
+}
+
+.material-icons-3xl,
+.material-icons-rounded-3xl,
+.material-icons-sharp-3xl {
+  font-size: var(--font-size-3xl);
+}
+
+.material-icons-4xl,
+.material-icons-rounded-4xl,
+.material-icons-sharp-4xl {
+  font-size: var(--font-size-4xl);
+}
+
+.material-icons-sharp,
+.material-icons-sharp-xs,
+.material-icons-sharp-sm,
+.material-icons-sharp-md,
+.material-icons-sharp-lg,
+.material-icons-sharp-xl,
+.material-icons-sharp-2xl,
+.material-icons-sharp-3xl,
+.material-icons-sharp-4xl,
+.material-icons-sharp-small,
+.material-icons-sharp-medium,
+.material-icons-sharp-large {
+  font-family: 'Material Symbols Sharp', serif;
+}
+
+.material-icons-rounded,
+.material-icons-rounded-xs,
+.material-icons-rounded-sm,
+.material-icons-rounded-md,
+.material-icons-rounded-lg,
+.material-icons-rounded-xl,
+.material-icons-rounded-2xl,
+.material-icons-rounded-3xl,
+.material-icons-rounded-4xl,
+.material-icons-rounded-small,
+.material-icons-rounded-medium,
+.material-icons-rounded-large {
+  font-family: 'Material Symbols Rounded', serif;
+}
+
+.material-icons.fill,
+.material-icons-rounded.fill,
+.material-icons-rounded-xs.fill,
+.material-icons-rounded-sm.fill,
+.material-icons-rounded-md.fill,
+.material-icons-rounded-lg.fill,
+.material-icons-rounded-xl.fill,
+.material-icons-rounded-2xl.fill,
+.material-icons-rounded-3xl.fill,
+.material-icons-rounded-4xl.fill,
+.material-icons-rounded-small.fill,
+.material-icons-rounded-medium.fill,
+.material-icons-rounded-large.fill,
+.material-icons-sharp.fill,
+.material-icons-sharp-xs.fill,
+.material-icons-sharp-sm.fill,
+.material-icons-sharp-md.fill,
+.material-icons-sharp-lg.fill,
+.material-icons-sharp-xl.fill,
+.material-icons-sharp-2xl.fill,
+.material-icons-sharp-3xl.fill,
+.material-icons-sharp-4xl.fill,
+.material-icons-sharp-small.fill,
+.material-icons-sharp-medium.fill,
+.material-icons-sharp-large.fill {
+  font-family: 'Material Symbols Filled', serif;
+}

@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global style entry for the UI shell */
+@import 'styles/_variables.css';
+@import 'styles/layout/_layout.css';
+@import 'styles/_buttons.css';
+@import 'styles/_typography.css';
+@import 'styles/_icons.css';
+@import 'styles/_card.css';
+@import 'styles/_chips.css';
+@import 'styles/_headings.css';
+@import 'styles/_media.css';
+@import 'styles/_transitions.css';
+@import 'styles/_inputs.css';

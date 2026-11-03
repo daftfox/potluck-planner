@@ -1,0 +1,23 @@
+Dietary icons: Lucide https://lucide.dev/
+Source: https://github.com/lucide-icons/lucide
+Revision: a630cec77eac6568b989e87e4947a8bfe45caacd
+License: ISC; Feather-derived icons additionally MIT. See LICENSE.lucide.
+Modification: stroke changed from currentColor to #d9b98b for external SVG images.
+
+Local filename -> upstream icons/<name>.svg
+vegetarian -> carrot
+vegan -> vegan
+gluten-free -> wheat-off
+dairy-free -> milk-off
+nut-free -> nut-off
+shellfish-free -> shrimp-off
+halal -> moon
+kosher -> star
+pescatarian -> fish
+keto -> beef
+low-carb -> sandwich
+egg-free -> egg-off
+soy-free -> bean-off
+diabetic -> candy-off
+
+These are illustrative dietary labels, not certifications or safety guarantees.

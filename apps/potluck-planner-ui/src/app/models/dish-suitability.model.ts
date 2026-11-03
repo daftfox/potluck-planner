@@ -1,0 +1,16 @@
+export enum DishSuitability {
+  VEGETARIAN = 'Vegetarian',
+  VEGAN = 'Vegan',
+  GLUTEN_FREE = 'Gluten-Free',
+  DAIRY_FREE = 'Dairy-Free',
+  NUT_FREE = 'Nut-Free',
+  SHELLFISH_FREE = 'Shellfish-Free',
+  HALAL = 'Halal',
+  KOSHER = 'Kosher',
+  PESCATARIAN = 'Pescatarian',
+  KETO = 'Keto',
+  LOW_CARB = 'Low-Carb',
+  EGG_FREE = 'Egg-Free',
+  SOY_FREE = 'Soy-Free',
+  DIABETIC = 'Diabetic',
+}

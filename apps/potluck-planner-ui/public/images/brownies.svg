@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360">
+  <title>Chocolate brownies with berries illustration</title>
+  <rect width="600" height="360" fill="#bda48d"/>
+  <path d="M0 80h600M0 180h600M0 280h600" stroke="#ad9279" stroke-width="3"/>
+  <ellipse cx="300" cy="197" rx="205" ry="137" fill="#9c8066"/>
+  <ellipse cx="300" cy="182" rx="205" ry="137" fill="#f5f3ef"/>
+  <ellipse cx="300" cy="182" rx="170" ry="108" fill="#e8dfd3"/>
+  <g stroke="#39251d" stroke-width="3" stroke-linejoin="round">
+    <path d="m180 133 109-16 24 83-109 17z" fill="#68412c"/>
+    <path d="m180 133 24 84v23l-24-83zm24 84 109-17v23l-109 17z" fill="#422b20"/>
+    <path d="m321 104 98 27-23 85-99-28z" fill="#68412c"/>
+    <path d="m297 188 99 28v23l-99-28zm99 28 23-85v23l-23 85z" fill="#422b20"/>
+    <path d="m272 199 102 26-24 61-102-26z" fill="#68412c"/>
+    <path d="m248 260 102 26v17l-102-26zm102 26 24-61v17l-24 61z" fill="#422b20"/>
+  </g>
+  <g fill="#34221b">
+    <circle cx="218" cy="151" r="5"/><circle cx="267" cy="165" r="6"/>
+    <circle cx="345" cy="141" r="6"/><circle cx="386" cy="169" r="5"/>
+    <circle cx="301" cy="236" r="6"/><circle cx="333" cy="250" r="5"/>
+  </g>
+  <g fill="#b93c48">
+    <circle cx="173" cy="225" r="15"/><circle cx="153" cy="241" r="13"/>
+    <circle cx="409" cy="251" r="15"/><circle cx="432" cy="231" r="13"/>
+  </g>
+  <path d="M404 246q-5-34 27-41-2 28-27 41" fill="#557c42"/>
+</svg>

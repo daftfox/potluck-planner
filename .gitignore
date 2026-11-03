@@ -4,6 +4,8 @@
 dist
 tmp
 out-tsc
+/data/
+apps/potluck-planner-service/.env
 
 # dependencies
 node_modules
@@ -45,7 +47,3 @@ Thumbs.db
 .claude/settings.local.json
 
 .angular
-
-__screenshots__/
-vitest.config.*.timestamp*
-.vitest

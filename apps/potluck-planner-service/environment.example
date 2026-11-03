@@ -1,0 +1,14 @@
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=potluck
+DB_PASSWORD=potluck
+DB_NAME=mydb
+PLANNER_SERVER_PORT=3000
+JWT_SECRET=replace-this-with-a-random-secret-at-least-32-characters
+JWT_ISSUER=potluck-planner-api
+JWT_AUDIENCE=potluck-planner-ui
+INITIAL_ADMIN_PASSWORD=replace-with-a-private-password-for-the-first-admin
+# Optional: directory containing the built Angular UI (index.html). Defaults to
+# ./ui next to main.js; the Docker image sets /app/ui. When no index.html is
+# found there, only the API is served.
+# UI_DIST_PATH=/app/ui

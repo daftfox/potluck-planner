@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 360">
+  <title>Roasted vegetable pasta salad illustration</title>
+  <rect width="600" height="360" fill="#c9b28d"/>
+  <path d="M0 75h600M0 180h600M0 285h600" stroke="#baa17c" stroke-width="3"/>
+  <ellipse cx="300" cy="193" rx="210" ry="144" fill="#a58b65"/>
+  <ellipse cx="300" cy="180" rx="210" ry="144" fill="#f5f3ef"/>
+  <ellipse cx="300" cy="180" rx="175" ry="112" fill="#ebe0c3"/>
+  <g fill="none" stroke="#e5ba62" stroke-width="19" stroke-linecap="round">
+    <path d="m185 135 34 20m56-49 27 22m47 5 37 13m-195 45 35 17m46-47 28 26m43 8 39-15m-90 68 33 13m-97-7 24-19m130 5 27 14"/>
+  </g>
+  <g fill="#ca5940">
+    <path d="m225 102 25 5-4 24-25-6zm97 42 26-6 5 25-23 6zm-143 58 26-5 7 24-27 7zm173 36 25-8 9 20-24 11z"/>
+    <circle cx="390" cy="173" r="14"/>
+    <circle cx="264" cy="219" r="13"/>
+  </g>
+  <g fill="#557c42">
+    <ellipse cx="243" cy="161" rx="10" ry="22" transform="rotate(35 243 161)"/>
+    <ellipse cx="345" cy="113" rx="10" ry="22" transform="rotate(-40 345 113)"/>
+    <ellipse cx="319" cy="226" rx="10" ry="22" transform="rotate(60 319 226)"/>
+    <ellipse cx="202" cy="177" rx="10" ry="20" transform="rotate(-30 202 177)"/>
+  </g>
+  <g fill="#443b32">
+    <circle cx="282" cy="147" r="9"/>
+    <circle cx="227" cy="224" r="9"/>
+    <circle cx="356" cy="198" r="9"/>
+    <circle cx="310" cy="105" r="8"/>
+  </g>
+</svg>
